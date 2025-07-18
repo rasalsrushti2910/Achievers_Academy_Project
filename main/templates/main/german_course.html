@@ -1,0 +1,76 @@
+{% extends 'main/home.html' %}
+{% block content %}
+<style>
+    .course-card {
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 30px;
+        border-radius: 15px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-title {
+        font-size: 1.9rem;
+        font-weight: 600;
+        color: #ffc400;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .course-card p {
+        font-size: 1rem;
+        text-align: center;
+        color: #555;
+    }
+
+    .course-list {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 25px;
+    }
+
+    .course-list li {
+        font-size: 1.05rem;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .btn-yellow {
+        background-color: #ffc400;
+        border: none;
+        color: #ffffff;
+        display: block;
+        width: fit-content;
+        margin: 25px auto 0;
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        text-decoration: none; /* removes underline */
+    }
+
+    /* .btn-yellow:hover {
+        background-color: #e6b800;
+        color: #fff;
+    } */
+</style>
+
+<div class="course-card">
+    <h2 class="course-title">German Language Course</h2>
+    <p>Master the German language for career, education, or travel through certified levels.</p>
+    <ul class="course-list">
+        <li>📚<strong>Level:</strong> A1 to B2</li>
+        <li>🕒<strong>Duration:</strong> 6 Months</li>
+        <li>🧑‍🏫<strong>Mode:</strong> Classroom / Online</li>
+        <li>✅<strong>Includes:</strong> Speaking, Grammar, Listening, Vocabulary</li>
+    </ul>
+    <a href="{% url 'home' %}" class="btn-yellow">⬅ Back to Home</a>
+</div>
+{% endblock %}

@@ -1,6 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Admission
 from django.contrib import messages
+
+
+
+
+#   AdmissionForm  view
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import AdmissionForm  # You'll need to create this form
+
 def home(request):
     return render(request, 'main/home.html')
 
@@ -43,6 +52,7 @@ def german_course(request):
 
 
 
+# receptionist_login & Dashboard View
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -64,24 +74,87 @@ def receptionist_login(request):
 
 
 
-@login_required
-def receptionist_dashboard(request):
-    # Fetch all admissions sorted by course, then name
-    admissions = Admission.objects.all().order_by('name', 'submitted_at' )
+from collections import defaultdict, OrderedDict
+from django.shortcuts import render
+from .models import Admission
 
-    # Group data by submission date
+def receptionist_dashboard(request):
+    # Fetch all admissions ordered by name and submitted date
+    admissions = Admission.objects.all().order_by('name', 'submitted_at')
+
+    # Group admissions by date
     grouped_data = defaultdict(list)
     for admission in admissions:
-        date_key = admission.submitted_at.date()  # Grouping key: date only
+        date_key = admission.submitted_at.date()
         grouped_data[date_key].append(admission)
 
-    # Convert defaultdict to regular dict
+    # Sort the grouped data by date (descending)
+    sorted_grouped_admissions = OrderedDict(sorted(grouped_data.items(), reverse=True))
+
+    # Pass the sorted data to the template
     context = {
-        'grouped_admissions': dict(grouped_data)
+        'grouped_admissions': sorted_grouped_admissions
     }
     return render(request, 'main/receptionist_dashboard.html', context)
-
 
 def receptionist_logout(request):
     logout(request)
     return redirect("receptionist_login")
+
+
+
+def edit_admission(request, admission_id):
+    admission = get_object_or_404(Admission, id=admission_id)
+    if request.method == 'POST':
+        form = AdmissionForm(request.POST, instance=admission)
+        if form.is_valid():
+            form.save()
+            return redirect('receptionist_dashboard')  # Update this to your dashboard view name
+    else:
+        form = AdmissionForm(instance=admission)
+    # return render(request, 'edit_admission.html', {'form': form})
+    return render(request, 'main/edit_admission.html', {'form': form})
+
+
+def delete_admission(request, admission_id):
+    admission = get_object_or_404(Admission, id=admission_id)
+    admission.delete()
+    return redirect('receptionist_dashboard')  # Update this to your dashboard view name
+
+
+#Admin_login & Dashboard View
+
+from .forms import AdminLoginForm
+from .models import AdminUser
+
+def admin_login(request):
+    error = ''
+    if request.method == 'POST':
+        form = AdminLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            try:
+                admin = AdminUser.objects.get(username=username, password=password)
+                request.session['admin_id'] = admin.id
+                return redirect('admin_dashboard')
+            except AdminUser.DoesNotExist:
+                error = 'Invalid credentials'
+    else:
+        form = AdminLoginForm()
+
+    return render(request, 'main/admin_login.html', {'form': form, 'error': error})
+
+def admin_dashboard(request):
+    if not request.session.get('admin_id'):
+        return redirect('admin_login')
+    return render(request, 'main/admin_dashboard.html')
+
+#For Course
+
+
+
+
+
+
+

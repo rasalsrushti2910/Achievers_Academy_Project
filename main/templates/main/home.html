@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Achievers Academy - English Speaking & Language Courses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
@@ -74,17 +74,51 @@
             background: linear-gradient(to right, #39034b, #f307d3);
             color: #ffffff;
         }
-        footer {
-            font-size: 1rem;
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-        }
-        footer p {
-            color: #bbb;
-        }
-        footer strong {
-            color: #fff;
-        }
+        .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #ffffff;
+    background-color: #333;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.social-icon.facebook:hover {
+    background-color: #3b5998;
+}
+
+.social-icon.instagram:hover {
+    background-color: #e60b7c;
+}
+
+.social-icon.twitter:hover {
+    background-color: #1da1f2;
+}
+
+.social-icon.linkedin:hover {
+    background-color: #0077b5;
+}
+
+.social-icon.youtube:hover {
+    background-color: #ff0000;
+}
+
 
 .gallery-card {
     height: 250px;
@@ -142,9 +176,11 @@
 }
 
 .flip-card-back {
-  background: linear-gradient(135deg, #39034b, #f307d3);
+  background: linear-gradient(135deg, #5d027b, #ce06b3);
   color: white;
   transform: rotateY(180deg);
+  font-size: large;
+  
 }
 
 .card-feature {
@@ -156,17 +192,154 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+ .icon-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ca0692, #3f0155);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
+    .icon-circle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
 
+    .text-custom {
+        color: #fdd835 !important; /* Optional if you want yellow text */
+    }
+    /* About Section Animation */
+.about-section .about-entry {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
 
-    </style>
+.about-section .about-entry:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.about-section .about-entry:nth-child(3) {
+    animation-delay: 0.4s;
+}
+/* Add more delays as needed */
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Text Fade Effect */
+.about-text {
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background 0.4s ease;
+}
+.about-text:hover {
+    background: linear-gradient(to right, #e6d9f0, #f6ecfa);
+}
+
+/* Image Zoom on Hover */
+.about-image {
+    /* overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); */
+    width: 450px;
+    max-width: 500px;
+    margin: auto;
+    
+}
+.about-image img {
+    transition: transform 0.4s ease;
+    border-radius: 15px;
+}
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+.card-feature {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+}
+
+.card-feature:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-feature i {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #7b1fa2, #f31690);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-feature h5 {
+    font-weight: bold;
+    color: #4a0072;
+}
+
+.card-feature p {
+    color: #555;
+    font-size: 0.95rem;
+    min-height: 70px;
+}
+
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+    background: linear-gradient(to right, #ca0692, #4d0168);
+    color: white;
+    border-bottom: none;
+}
+
+.modal-header .modal-title {
+    font-weight: 600;
+}
+
+.modal-body {
+    font-size: 1rem;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.course-photo {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #39034b;
+    transition: transform 0.3s ease;
+}
+.course-photo:hover {
+    transform: scale(1.05);
+    border-color: #d40997;
+}
+</style>
 </head>
 
 <body>
     {% block content %}
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-custom py-3">
+<!-- <nav class="navbar navbar-expand-lg navbar-custom py-3">
     <div class="container">
         <a class="navbar-brand" href="#">Achievers Academy</a>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -178,166 +351,148 @@
             </ul>
         </div>
     </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg navbar-custom py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#">Achievers Academy</a>
+    <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active text-white" href="#"><b>Home</b></a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#about"><b>About</b></a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#gallery"><b>Gallery</b></a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#contact"><b>Contact</b></a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
-
 <!-- Hero -->
 <section class="hero">
     <div class="container">
         <h1>The Place Where Your English Journey Begins</h1>
         <br>
+        {% if courses %}
         <section class="container my-5">
-  <h2 class="section-title text-center mb-4">Our Language Courses</h2>
-  <div class="row g-4 justify-content-center">
+            <h2 class="section-title text-center mb-4">Our Language Courses</h2>
+            <br>
+            <div class="row g-4 justify-content-center">
+                {% for course in courses %}
+                <div class="col-md-4">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <!-- FRONT -->
+                            <div class="flip-card-front d-flex flex-column justify-content-center align-items-center text-center">
+                                {% if course.course_photo %}
+                                <img src="{{ course.course_photo.url }}" alt="{{ course.name }}" class="course-photo mb-3">
+                                {% else %}
+                                <img src="{% static 'images/default-course.jpg' %}" alt="Default Course" class="course-photo mb-4">
+                                {% endif %}
+                                <h5>{{ course.name }}</h5>
+                            </div>
 
-    <!-- Card 1: English -->
-    <div class="col-md-4">
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front d-flex flex-column justify-content-center align-items-center text-center">
-            <i class="fa fa-comments fa-3x text-primary mb-3"></i>
-            <h5>English Communication</h5>
-          </div>
-          <div class="flip-card-back text-center p-3">
-            <p>Master fluent English with real-world speaking, writing, and listening practice.</p>
-            <!-- <a href="#" class="btn btn-outline-light mt-2">Explore</a> -->
-            <!-- English Card -->
-            <a href="{% url 'english_course' %}" class="btn btn-outline-light mt-2">Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2: Japanese -->
-    <div class="col-md-4">
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front d-flex flex-column justify-content-center align-items-center text-center">
-            <i class="fa fa-language fa-3x text-danger mb-3"></i>
-            <h5>Japanese Language</h5>
-          </div>
-          <div class="flip-card-back text-center p-3">
-            <p>Learn Japanese (N5–N3) with writing, listening & culture-based classes.</p>
-            <!-- <a href="#" class="btn btn-outline-light mt-2">Explore</a> -->
-            <!-- Japanese Card -->
-            <a href="{% url 'japanese_course' %}" class="btn btn-outline-light mt-2">Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3: German -->
-    <div class="col-md-4">
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front d-flex flex-column justify-content-center align-items-center text-center">
-            <i class="fa fa-globe fa-3x text-warning mb-3"></i>
-            <h5>German Language</h5>
-          </div>
-          <div class="flip-card-back text-center p-3">
-            <p>Learn German grammar, vocabulary, and conversation for global careers.</p>
-            <!-- <a href="#" class="btn btn-outline-light mt-2">Explore</a> -->
-             <!-- German Card -->
-            <a href="{% url 'german_course' %}" class="btn btn-outline-light mt-2">Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
+                            <!-- BACK -->
+                            <div class="flip-card-back text-center p-3">
+                                <p>{{ course.description|truncatechars:100 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% else %}
+        <p class="text-center text-muted">No courses available at the moment.</p>
+        {% endif %}
     </div>
 </section>
+
 
 <!-- About Section -->
-<section id="about" class="container my-5">
+<section id="about" class="container my-5 about-section">
     <h2 class="section-title">About Achievers Academy</h2>
-    <t class="row align-items-center g-4">
-        
-        <div class="col-md-6">
-            <p style="font-size: 1.1rem; text-align: justify;">
-                <strong>Achievers Academy</strong> is more than just a language training center — it’s a place where dreams take flight!  
-                Our mission is to help students of all ages unlock their full potential through fluent English communication, personality development, and life-changing soft skills.
-            </p>
-            <p style="font-size: 1.1rem; text-align: justify;">
-                With years of expertise in teaching <strong>English, Japanese, and German languages</strong>, we offer a modern, interactive learning experience with:
-            </p>
-            <ul style="font-size: 1.05rem;">
-                <li> Small batches for personal attention</li>
-                <li> Advanced computerized labs & smart classrooms</li>
-                <li> Special women-only batches</li>
-                <li> Practical training in presentations, interviews & group discussions</li>
-                <li> Result-oriented coaching for competitive exams</li>
-            </ul>
-            <p style="font-size: 1.1rem; text-align: justify;">
-                Whether you are a student, a working professional, or someone looking to improve your public speaking — <strong>Achievers Academy</strong> is your trusted partner on the journey to confidence and success. Come, join us — and speak your way to a brighter future!
-            </p>
-               </div>
-      
-        <div class="col-md-6">
-            <!-- <img src="abt1.jpeg" alt="Achievers Academy" class="img-fluid rounded shadow" height="550px" width="550px"> -->
-             <img src="{% static 'main/images/abt1.jpeg' %}" alt="Achievers Academy" class="img-fluid rounded shadow" height="550px" width="550px">
+    <br>
+    {% if all_about %}
+        {% for about in all_about %}
+        <div class="row align-items-center g-4 mb-5 about-entry">
+            <div class="col-md-6">
+                <div class="about-text">
+                    <p style="font-size: 1.1rem; text-align: justify;">
+                        {{ about.text|linebreaks }}
+                    </p>
+                </div>
+            </div>       
+            <div class="col-md-6">
+                <div class="about-image">
+                    {% if about.image %}
+                        <img src="{{ about.image.url }}" alt="{{ about.title }}" class="img-fluid" height="550px" width="550px">
+                    {% else %}
+                        <img src="{% static 'main/images/default-about.jpg' %}" alt="Default Image" class="img-fluid" height="550px" width="550px">
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        
-    </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center text-muted">No About Us information available.</p>
+    {% endif %}
 </section>
-
 
 
 <!-- Salient Features - Circular Format -->
-<section class="container my-5">
-    <h2 class="section-title">Salient Features</h2>
+<section class="container my-5" data-aos="fade-up">
+    <h2 class="section-title text-center mb-4" data-aos="fade-down">Salient Features</h2>
     <div class="row g-4 text-center">
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-users"></i>
             </div>
             <h5>Only 25 students' batch</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-book"></i>
             </div>
             <h5>Basic fundamentals of English</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-desktop"></i>
             </div>
             <h5>Digital Computerized Lab</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-chalkboard-teacher"></i>
             </div>
             <h5>Digital Interactive Classroom</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="500">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-book-reader"></i>
             </div>
             <h5>Well-equipped Library</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="600">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-file-alt"></i>
             </div>
             <h5>Well-designed study material</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="700">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-female"></i>
             </div>
             <h5>Separate batch for women learners</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="800">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-users-cog"></i>
             </div>
             <h5>Age groupwise batches</h5>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="900">
             <div class="circle-feature mx-auto mb-3">
                 <i class="fa fa-user-tie"></i>
             </div>
@@ -347,225 +502,40 @@
 </section>
 
 
-
-<!-- Include Bootstrap JS if not already included -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <!-- Feature Section -->
 <section class="container my-5">
     <h2 class="section-title text-center mb-4">Why Choose Achievers Academy</h2>
+    <br>
     <div class="row g-4">
-
-        <!-- Card Start -->
-         <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalCommunication">
-                <i class="fa fa-user-check fa-3x mb-3 text-primary"></i>
-                <h5>Individual Attention</h5>
-                <p class="mt-2">Personalized coaching with a focus on every student's growth.</p>
+        {% if academy_features %}
+            {% for feature in academy_features %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalFeature{{ feature.id }}">
+                    <i class="fa fa-award fa-3x mb-3 text-primary"></i>
+                    <h5>{{ feature.title }}</h5>
+                    <p class="mt-2">{{ feature.description|truncatechars:100 }}</p>
+                </div>
             </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalCommunication">
-                <i class="fa fa-comments fa-3x mb-3 text-success"></i>
-                <h5>Communication Skills</h5>
-                <p class="mt-2">Master the art of clear and confident English communication in any setting.</p>
+            <!-- Modal -->
+            <div class="modal fade" id="modalFeature{{ feature.id }}" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{ feature.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{ feature.detailed_description }}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalPresentation">
-                <i class="fa fa-chalkboard fa-3x mb-3 text-warning"></i>
-                <h5>Presentation Skills</h5>
-                <p class="mt-2">Build impressive presentation skills with expert guidance and practical sessions.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalPersonality">
-                <i class="fa fa-user-circle fa-3x mb-3 text-info"></i>
-                <h5>Personality Development</h5>
-                <p class="mt-2">Boost your personality, confidence, and public image with our proven techniques.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalGroup">
-                <i class="fa fa-users fa-3x mb-3 text-danger"></i>
-                <h5>Group Discussions</h5>
-                <p class="mt-2">Engage in interactive group discussions to develop leadership & teamwork abilities.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalDebate">
-                <i class="fa fa-microphone fa-3x mb-3 text-secondary"></i>
-                <h5>Debates</h5>
-                <p class="mt-2">Participate in exciting debates and improve your logical thinking and articulation.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalSoftSkills">
-                <i class="fa fa-handshake fa-3x mb-3 text-primary"></i>
-                <h5>Soft Skills</h5>
-                <p class="mt-2">Gain vital soft skills required for career growth and professional success.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalInterview">
-                <i class="fa fa-briefcase fa-3x mb-3 text-success"></i>
-                <h5>Interview Skills</h5>
-                <p class="mt-2">Get ready for job interviews with our result-driven coaching and mock sessions.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-feature text-center p-4 h-100" data-bs-toggle="modal" data-bs-target="#modalResult">
-                <i class="fa fa-award fa-3x mb-3 text-warning"></i>
-                <h5>Result Oriented Coaching</h5>
-                <p class="mt-2">Achieve your personal & professional goals with our effective and goal-focused training.</p>
-            </div>
-        </div>
-        <!-- Card End -->
+            {% endfor %}
+        {% else %}
+            <p class="text-muted text-center">No features available at the moment.</p>
+        {% endif %}
     </div>
-    <!-- Individual Attention -->
-     <div class="modal fade" id="modalCommunication" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Individual Attention</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>At Achievers Academy, we understand that every learner is different. Our personalized coaching ensures that each student receives the attention they need to grow in confidence, improve their English skills, and reach their individual goals effectively.</p>
-        </div>
-    </div>
-  </div>
-</div>
-
-    <!-- Communication Modal -->
-<div class="modal fade" id="modalCommunication" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Communication Skills</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Develop fluency, confidence, and clarity in verbal and written communication. Includes practical speaking sessions, feedback, and real-world exercises.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Presentation Modal -->
-<div class="modal fade" id="modalPresentation" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Presentation Skills</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Learn to craft impactful presentations with strong body language, voice modulation, and visual support techniques.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Personality Modal -->
-<div class="modal fade" id="modalPersonality" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Personality Development</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Sharpen self-image, behavior, appearance, and social interaction to shine confidently in any environment.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Group Discussion Modal -->
-<div class="modal fade" id="modalGroup" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Group Discussions</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Practice group debates, active listening, and structured conversation to build leadership and analytical skills.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Debate Modal -->
-<div class="modal fade" id="modalDebate" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Debates</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Engage in guided debates to strengthen reasoning, persuasion, and public speaking proficiency.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Soft Skills Modal -->
-<div class="modal fade" id="modalSoftSkills" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Soft Skills</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Improve adaptability, teamwork, problem-solving, and emotional intelligence for overall workplace success.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Interview Modal -->
-<div class="modal fade" id="modalInterview" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Interview Skills</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Prepare for interviews with HR and technical mock rounds, grooming tips, and structured answers.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Result Modal -->
-<div class="modal fade" id="modalResult" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Result Oriented Coaching</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Track measurable progress and reach goals with a personalized, data-driven learning strategy.</p>
-      </div>
-    </div>
-  </div>
-</div>
 </section>
-
 
 
 <!-- Batch Banner -->
@@ -577,48 +547,54 @@
  </button>
 </div>
 
-
-
 <!-- Gallery Section -->
 <section id="gallery" class="container my-5">
     <h2 class="section-title text-center mb-4">Gallery</h2>
     <div class="row g-4">
-        <!-- Gallery Image 1 -->
-        <div class="col-md-4">
-            <div class="gallery-card rounded shadow overflow-hidden position-relative">
-                <img src="{% static 'main/images/g1.jpeg' %}" class="img-fluid w-100 h-100 object-fit-cover" alt="Classroom 1">
+        {% if gallery_images %}
+            {% for image in gallery_images %}
+            <div class="col-md-4">
+                <div class="gallery-card rounded shadow overflow-hidden position-relative">
+                    <img src="{{ image.image.url }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ image.title }}">
+                </div>
             </div>
-        </div>
-        <!-- Gallery Image 2 -->
-        <div class="col-md-4">
-            <div class="gallery-card rounded shadow overflow-hidden position-relative">
-                <img src="{% static 'main/images/g2.jpeg' %}" class="img-fluid w-100 h-100 object-fit-cover" alt="Classroom 2">
-            </div>
-        </div>
-        <!-- Gallery Image 3 -->
-        <div class="col-md-4">
-            <div class="gallery-card rounded shadow overflow-hidden position-relative">
-                <img src="{% static 'main/images/g3.jpeg' %}" class="img-fluid w-100 h-100 object-fit-cover" alt="Students">
-            </div>
-        </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted text-center">No gallery images available at the moment.</p>
+        {% endif %}
     </div>
 </section>
 
-
 <!-- Footer -->
+<!-- Add Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<section id="contact">
 <footer class="bg-dark text-light pt-4 pb-3 mt-5">
     <div class="container text-center">
         <p class="mb-2">
-            Address: Tulsi Computer Science and Information Technology College, Adarsh Nagar, D.P. Road, Beed-431122
+            <strong>Tulsi Computer Science and Information Technology College, Adarsh Nagar, D.P. Road, Beed-431122</strong>
         </p>
         <p class="mb-2">
             Contact: <strong>9860980703</strong>
         </p>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons my-3">
+            <a href="#" class="social-icon facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+
         <p class="small mb-0">
             © 2025 <strong>Achievers Academy</strong>. All rights reserved.
         </p>
     </div>
 </footer>
+</section>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

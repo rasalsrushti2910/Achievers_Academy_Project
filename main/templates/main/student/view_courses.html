@@ -1,0 +1,90 @@
+{% extends "main/student_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .view-courses-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        color: #d40997;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .card-text {
+        color: #555;
+        font-size: 0.95rem;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 1rem;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .course-photo {
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        margin: 15px auto 0 auto;
+        display: block;
+        border-radius: 50%;
+        border: 2px solid #3b034e;
+        transition: transform 0.3s ease;
+    }
+
+    .course-photo:hover {
+        transform: scale(1.05);
+        border-color: #d40997;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+</style>
+
+<div class="container mt-5 view-courses-container">
+    <h2 class="text-center heading">Available Courses</h2>
+
+    {% if courses %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for course in courses %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-4 p-3">
+                {% if course.course_photo %}
+                    <img src="{{ course.course_photo.url }}" alt="{{ course.name }}" class="course-photo">
+                {% else %}
+                    <img src="{% static 'images/default-course.jpg' %}" alt="Default Course" class="course-photo">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.name }}</h5>
+                    <p class="card-text">{{ course.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning text-center">
+        No courses available.
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

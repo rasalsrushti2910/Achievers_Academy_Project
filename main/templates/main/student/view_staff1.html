@@ -1,0 +1,87 @@
+{% extends "main/student_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .staff-container {
+        background-color: #f8f9fa;
+        padding: 40px 20px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    .staff-heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .staff-card {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .staff-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .staff-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 2px solid #0b0b0b;
+    }
+
+    .staff-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .staff-course {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .no-staff {
+        text-align: center;
+        color: #999;
+        font-size: 18px;
+        margin-top: 40px;
+    }
+</style>
+
+<div class="container staff-container">
+    <h2 class="staff-heading">Our Staff</h2>
+
+    {% if staff_members %}
+    <div class="card-grid">
+        {% for staff in staff_members %}
+        <div class="staff-card">
+            <img src="{{ staff.staff_photo.url }}" alt="{{ staff.staff_name }}" class="staff-img">
+            <div class="staff-name">{{ staff.staff_name }}</div>
+            <div class="staff-course">{{ staff.course.name }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-staff">No staff members found.</p>
+    {% endif %}
+</div>
+{% endblock %}

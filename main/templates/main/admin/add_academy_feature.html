@@ -1,0 +1,77 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .add-academy-feature-container {
+        background: #f8f9fa;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .add-academy-feature-container:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #39034b;
+    }
+
+    .btn-custom {
+        background-color: #e60493;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        background-color: #4c0564;
+        color: white;
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+    }
+
+    .alert-success {
+        font-weight: 500;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="container mt-5 col-md-6">
+    <div class="add-academy-feature-container">
+        <h3 class="mb-4 text-center heading">Add Academy Feature</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Feature Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Short Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter short description"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="detailed_description" class="form-label">Detailed Description</label>
+                <textarea class="form-control" id="detailed_description" name="detailed_description" rows="5" placeholder="Enter detailed description"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-custom w-100">Add Feature</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

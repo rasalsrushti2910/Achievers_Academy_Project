@@ -1,0 +1,82 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .view-courses-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .table thead {
+        background-color: #39034b;
+        color: #fff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1edf4;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        font-weight: 500;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        font-weight: 500;
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+</style>
+
+<div class="container mt-5 view-courses-container">
+    <h3 class="text-center heading">View Staff</h3>
+
+    {% if staff_list %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Staff Name</th>
+                    <th>Photo</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for staff in staff_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ staff.staff_name }}</td>
+                    <td>
+                        <img src="{{ staff.staff_photo.url }}" alt="{{ staff.staff_name }}" width="100" class="img-thumbnail">
+                    </td>
+                    <td>{{ staff.course.name }}</td>
+                    <td>
+                        <a href="{% url 'edit_staff' staff.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_staff' staff.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-info text-center">No staff found.</div>
+    {% endif %}
+</div>
+{% endblock %}

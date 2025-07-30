@@ -1,0 +1,75 @@
+{% extends "main/home.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(120deg, #e0c3fc, #8ec5fc);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .add-course-container {
+        background-color: white;
+        padding: 40px;
+        margin-top: 100px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 600px;
+    }
+
+    .heading {
+        font-weight: bold;
+        color: #5c007a;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .btn-custom {
+        background-color: #5c007a;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        font-weight: 600;
+        border-radius: 8px;
+    }
+
+    .btn-custom:hover {
+        background-color: #3b0050;
+        color: #ffffff;
+    }
+
+    .alert {
+        font-weight: 500;
+        border-radius: 6px;
+    }
+</style>
+
+<div class="container mt-5 col-md-6">
+    <div class="add-course-container">
+        <h3 class="text-center heading">Student Login</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-custom w-100">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+<!-- email- srushtirasal2910@gmail.com
+            ganbavalesidhhi@gmail.com
+-->

@@ -85,9 +85,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'achievers_academy_db',
-        'USER': 'django_user',
-        'PASSWORD': 'Swami@1919',
-        'HOST': '127.0.0.1',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
@@ -144,6 +144,11 @@ STATICFILES_DIRS = [
 
 
 LOGIN_URL = '/receptionist/login/'
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 

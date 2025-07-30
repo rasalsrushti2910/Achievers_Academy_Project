@@ -1,0 +1,105 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .add-course-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+    }
+
+    .btn-custom {
+        background-color: #e60493;
+        border: none;
+        font-weight: bold;
+        color: white;
+    }
+
+    .btn-custom:hover {
+        background-color: #52045f;
+        color: white;
+    }
+
+    .student-photo-preview {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 10px;
+        margin-top: 10px;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container mt-5 col-md-6">
+    <div class="add-course-container">
+        <h3 class="mb-4 text-center heading">Edit Student</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Student Name</label>
+                {{ form.admission }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                {{ form.phone }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Course</label>
+                {{ form.course }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Student Photo</label>
+                {{ form.student_photo }}
+                {% if student.student_photo %}
+                    <div>
+                        <img src="{{ student.student_photo.url }}" alt="Current Photo" class="student-photo-preview">
+                    </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Update Student</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const admissionData = {
+        {% for admission in admissions %}
+            "{{ admission.id }}": {
+                phone: "{{ admission.phone }}",
+                email: "{{ admission.email }}"
+            },
+        {% endfor %}
+    };
+
+    document.getElementById("id_admission").addEventListener("change", function () {
+        const selectedId = this.value;
+        const phoneField = document.getElementById("id_phone");
+        const emailField = document.getElementById("id_email");
+
+        if (admissionData[selectedId]) {
+            phoneField.value = admissionData[selectedId].phone;
+            emailField.value = admissionData[selectedId].email;
+        } else {
+            phoneField.value = "";
+            emailField.value = "";
+        }
+    });
+</script>
+{% endblock %}

@@ -15,12 +15,124 @@ class Admission(models.Model):
     def __str__(self):
         return self.name
 
-
-
 class AdminUser(models.Model):
     username = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
 
     def __str__(self):
         return self.username
+    
+#Add_course model 
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    course_photo = models.ImageField(upload_to='course_photos/', null=True, blank=True)
+
+
+    def __str__(self):
+        return self.name
+
+#staff model
+class Staff(models.Model):
+    staff_name = models.CharField(max_length=100)
+    staff_photo = models.ImageField(upload_to='staff_photos/')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.staff_name
+    
+#syllabus model
+
+from django.db import models
+from .models import Course  # Ensure Course model is already defined
+
+class Syllabus(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    syllabus_pdf = models.FileField(upload_to='syllabus_pdfs/')
+
+    def __str__(self):
+        return f"Syllabus for {self.course.name}"
+    
+
+#about us
+
+from django.db import models
+
+class AboutUs(models.Model):
+    text = models.TextField()
+    image = models.ImageField(upload_to='about_us_images/', blank=True, null=True)
+
+    def __str__(self):
+        return "About Us Section"
+
+
+
+#Gallery model
+from django.db import models
+
+class Gallery(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='gallery_images/')
+
+    def __str__(self):
+        return self.title
+    
+
+
+ #academy fetures
+ 
+
+from django.db import models
+from django.db import models
+
+class AcademyFeature(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    detailed_description = models.TextField()
+
+    def __str__(self):
+        return self.title
+    
+#add Student model
+
+# class Student(models.Model):
+#     admission = models.ForeignKey(Admission, on_delete=models.CASCADE)
+#     phone = models.CharField(max_length=15)
+#     email = models.EmailField()
+#     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self.admission.name
+    
+# #student 
+# # models.py
+# from django.db import models
+# from main.models import Course, Admission
+
+# class Student(models.Model):
+#     admission = models.ForeignKey(Admission, on_delete=models.CASCADE)
+#     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
+#     phone = models.CharField(max_length=15, null=True)
+#     email = models.EmailField(unique=True, null=True)
+
+#     def __str__(self):
+#         return self.admission.name
+
+from django.db import models
+
+class Student(models.Model):
+    admission = models.ForeignKey('Admission', on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15,null=True)
+    email = models.EmailField(unique=True, null=True)
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
+
+    student_photo = models.ImageField(upload_to='student_photos/', null=True, blank=True)
+
+    def __str__(self):
+        return self.admission.name  # Adjust based on your Admission model
+
+
+
+
+
 

@@ -1,0 +1,61 @@
+{% extends "main/student_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .view-features-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        color: #d00880;
+        font-weight: bold;
+    }
+
+    .card-text {
+        color: #333;
+    }
+
+    .card {
+        transition: transform 0.2s ease-in-out;
+        border: none;
+        border-radius: 15px;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+</style>
+
+<div class="container mt-5 view-features-container">
+    <h2 class="text-center heading">Academy Features</h2>
+    <div class="row">
+        {% for feature in features %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ feature.title }}</h5>
+                    <p class="card-text">{{ feature.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-warning text-center">
+            No academy features found.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

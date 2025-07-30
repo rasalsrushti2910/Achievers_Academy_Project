@@ -1,0 +1,118 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .view-students-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .view-students-container:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead {
+        background-color: #39034b;
+        color: #fff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1edf4;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        font-weight: 500;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .btn-delete:hover {
+        background-color: #a71d2a;
+        color: white;
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .student-photo {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<div class="container mt-5 view-students-container">
+    <h3 class="text-center heading">View Students</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Photo</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for student in students %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ student.admission.name }}</td>
+        <td>
+            {% if student.student_photo %}
+                <img src="{{ student.student_photo.url }}" alt="Photo" class="student-photo">
+            {% else %}
+                <span class="text-muted">No Photo</span>
+            {% endif %}
+        </td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.course.name }}</td>
+        <td>
+            <a href="{% url 'edit_student' student.id %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'delete_student' student.id %}" class="btn-delete" onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="7" class="text-center">No students found.</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -102,9 +102,11 @@
         }
 
         hr {
-            margin: 20px 0;
-            border: none;
-            border-top: 1px solid #ccc;
+            margin-bottom: 20px ;
+            border: 0;
+            height: 1px;
+            background-color: #cbd5e1;
+            
         }
 
         ul {
@@ -142,7 +144,12 @@
 <div class="sidebar">
     <h5><i class="fas fa-graduation-cap"></i> Academy</h5>
 
-    <a href="/"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="/admin_dashboard/"><i class="fas fa-home"></i> Dashboard</a>
+    <button class="dropdown-btn"><i class="fas fa-user-graduate"></i> Students ▾</button>
+    <div class="dropdown-container">
+        <a href="/add_student/"><i class="fa fa-plus"></i> Add Students </a>
+        <a href="/view_student/"><i class="fa fa-eye"></i> View Students</a>
+    </div> 
 
     <button class="dropdown-btn"><i class="fas fa-book"></i> Course ▾</button>
     <div class="dropdown-container">
@@ -162,18 +169,13 @@
         <a href="/view_syllabus/"><i class="fa fa-eye"></i> View Syllabus</a>
     </div>
 
-    <a href="/about_us/"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="/add_about_us/"><i class="fas fa-info-circle"></i> About Us</a>
 
-    <button class="dropdown-btn"><i class="fas fa-star"></i> Salient Features ▾</button>
-    <div class="dropdown-container">
-        <a href="/add_salient/"><i class="fa fa-plus"></i> Add Salient Feature</a>
-        <a href="/view_salient/"><i class="fa fa-eye"></i> View Salient Features</a>
-    </div>
 
     <button class="dropdown-btn"><i class="fas fa-building-columns"></i> Academy Features ▾</button>
     <div class="dropdown-container">
         <a href="/add_academy_feature/"><i class="fa fa-plus"></i> Add Academy Feature</a>
-        <a href="/view_academy_feature/"><i class="fa fa-eye"></i> View Academy Features</a>
+        <a href="/view_academy_features/"><i class="fa fa-eye"></i> View Academy Features</a>
     </div>
 
     <button class="dropdown-btn"><i class="fas fa-images"></i> Gallery ▾</button>
@@ -181,12 +183,18 @@
         <a href="/add_gallery/"><i class="fa fa-plus"></i> Add Gallery Image</a>
         <a href="/view_gallery/"><i class="fa fa-eye"></i> View Gallery</a>
     </div>
+     <a href="/admin-login/"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </div>
 
+<!-- <div class="main-content"> -->
 <div class="main-content">
     <h1>Main Admin Dashboard</h1>
     <hr>
-   <h2>Welcome to the Main Admin Dashboard</h2>
+    <!-- <h2>Welcome to the Main Admin Dashboard</h2> -->
+    <!-- <div class="main-content" style="margin-left: 100px; padding: 20px;"> -->
+    {% block content %}
+    {% endblock %}
+    <!-- </div> -->
 </div>
 
 <footer>

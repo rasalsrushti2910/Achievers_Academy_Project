@@ -1,0 +1,79 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .gallery-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        font-weight: 500;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        font-weight: 500;
+    }
+
+    .alert-info {
+        color: #39034b;
+        background-color: #ece4f1;
+        border: none;
+        font-weight: 500;
+    }
+</style>
+
+<div class="container mt-5 gallery-container">
+    <h3 class="text-center heading">Gallery</h3>
+
+    {% if images %}
+    <div class="row">
+        {% for img in images %}
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ img.image.url }}" class="card-img-top" alt="{{ img.title }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6>{{ img.title }}</h6>
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'edit_gallery' img.id %}" class="btn btn-warning btn-sm me-2">Edit</a>
+                        <a href="{% url 'delete_gallery' img.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this image?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert alert-info text-center">No images in the gallery.</div>
+    {% endif %}
+</div>
+{% endblock %}

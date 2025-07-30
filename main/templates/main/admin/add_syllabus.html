@@ -1,0 +1,57 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .form-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    .form-container h3 {
+        color: #39034b;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .btn-custom {
+        background-color: #e60493;
+        border: none;
+        font-weight: bold;
+        color: white;
+    }
+
+    .btn-custom:hover {
+        background-color: #52045f;
+        color: white;
+    }
+</style>
+
+<div class="form-container">
+    <h3>Add Syllabus</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Course</label>
+            {{ form.course }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Syllabus PDF</label>
+            {{ form.syllabus_pdf }}
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Add Syllabus</button>
+    </form>
+</div>
+{% endblock %}

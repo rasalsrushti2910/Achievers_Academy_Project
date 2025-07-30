@@ -1,0 +1,60 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .add-academy-feature-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    .add-academy-feature-container h3 {
+        color: #39034b;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .btn-custom {
+        background-color: #e60493;
+        border: none;
+        font-weight: bold;
+        color: white;
+    }
+
+    .btn-custom:hover {
+        background-color: #52045f;
+        color: white;
+    }
+</style>
+
+<div class="container mt-5 col-md-6">
+    <div class="add-academy-feature-container">
+        <h3 class="mb-4 text-center heading">Edit Academy Feature</h3>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Feature Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ feature.title }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Short Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ feature.description }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="detailed_description" class="form-label">Detailed Description</label>
+                <textarea class="form-control" id="detailed_description" name="detailed_description" rows="5">{{ feature.detailed_description }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-custom w-100">Update Feature</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

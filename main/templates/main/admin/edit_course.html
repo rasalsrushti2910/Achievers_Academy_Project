@@ -1,0 +1,79 @@
+{% extends 'main/admin_dashboard.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<style>
+    .edit-course-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    .edit-course-container h3 {
+        color: #39034b;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .btn-custom {
+        background-color: #e60493;
+        border: none;
+        font-weight: bold;
+        color: white;
+    }
+
+    .btn-custom:hover {
+        background-color: #52045f;
+        color: white;
+    }
+
+    .form-label {
+        font-weight: 500;
+    }
+
+    input, select, textarea {
+        border-radius: 8px !important;
+    }
+</style>
+
+<div class="edit-course-container">
+    <h3>Edit Course</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Course Name</label>
+            {% render_field form.name class="form-control" placeholder="Enter Course Name" %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_description" class="form-label">Description</label>
+            {% render_field form.description class="form-control" rows="4" placeholder="Enter Course Description" %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_course_photo" class="form-label">Course Photo</label>
+            {% if form.instance.course_photo %}
+                <div class="mb-2">
+                    <img src="{{ form.instance.course_photo.url }}" alt="Current Photo" width="100">
+                </div>
+            {% endif %}
+            {% render_field form.course_photo class="form-control" %}
+        </div>
+
+        <button type="submit" class="btn btn-custom w-100">Update Course</button>
+    </form>
+</div>
+{% endblock %}

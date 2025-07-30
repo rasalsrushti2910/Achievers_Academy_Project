@@ -1,0 +1,93 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .add-about-container {
+        background: #f8f9fa;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .add-about-container:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #39034b;
+    }
+
+    .btn-custom {
+        background-color: #e60493;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        background-color: #4c0564;
+        color: white;
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .card p {
+        margin-bottom: 10px;
+    }
+
+    .card img {
+        max-height: 200px;
+        object-fit: contain;
+    }
+</style>
+
+<div class="container mt-5 col-md-8">
+    <div class="add-about-container">
+        <h3 class="heading mb-4">Add / Edit About Us</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="text">About Us Text</label>
+                {{ form.text }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Upload Image</label>
+                {{ form.image }}
+            </div>
+            <button type="submit" class="btn btn-custom w-10">Save</button>
+        </form>
+    </div>
+
+    <h4 class="mt-5 heading">About Us Entries</h4>
+
+    {% for entry in about_us_entries %}
+        <div class="card mb-3 shadow-sm p-3">
+            <div class="card-body">
+                <p>{{ entry.text|linebreaks }}</p>
+                {% if entry.image %}
+                    <img src="{{ entry.image.url }}" class="img-fluid rounded mb-2">
+                {% endif %}
+                <div>
+                    <a href="{% url 'add_about_us_with_pk' pk=entry.pk %}" class="btn btn-custom w-10 ">Edit</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="alert alert-info mt-3">No About Us content yet.</div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "main/admin_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .syllabus-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .table thead {
+        background-color: #39034b;
+        color: #fff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1edf4;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        font-weight: 500;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        font-weight: 500;
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+</style>
+
+<div class="container mt-5 syllabus-container">
+    <h3 class="text-center heading">Syllabus List</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% if syllabus_list %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Course Name</th>
+                    <th>PDF</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in syllabus_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ s.course.name }}</td>
+                    <td><a href="{{ s.syllabus_pdf.url }}" target="_blank">View PDF</a></td>
+                    <td>
+                        <a href="{% url 'edit_syllabus' s.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_syllabus' s.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-info text-center">No syllabus available.</div>
+    {% endif %}
+</div>
+{% endblock %}

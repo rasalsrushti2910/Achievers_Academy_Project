@@ -1,0 +1,81 @@
+{% extends "main/student_dashboard.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .syllabus-container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .heading {
+        color: #39034b;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 200px;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background-color: #39034b;
+        color: white;
+        font-weight: 600;
+        font-size: 18px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .card-body {
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    .pdf-link a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .pdf-link a:hover {
+        text-decoration: underline;
+    }
+
+    .no-data {
+        text-align: center;
+        font-style: italic;
+        color: #999;
+    }
+</style>
+
+<div class="container syllabus-container mt-5">
+    <h2 class="heading">Syllabus Details</h2>
+
+    {% for syllabus in syllabus_entries %}
+    <div class="card">
+        <div class="card-header">
+            {{ syllabus.course.name }}
+        </div>
+        <div class="card-body">
+            <p class="pdf-link">📄 <a href="{{ syllabus.syllabus_pdf.url }}" target="_blank">View PDF</a></p>
+        </div>
+    </div>
+    {% empty %}
+    <p class="no-data">No syllabus found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

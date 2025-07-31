@@ -68,7 +68,7 @@ urlpatterns =[
     path('view_syllabus1/', views.view_syllabus1, name='view_syllabus1'),
     path('view_academy_features1/', views.view_academy_features1, name='view_academy_features1'),
     
-
+    path('created_by/', views.created_by, name='created_by'),   
    
 ]
 

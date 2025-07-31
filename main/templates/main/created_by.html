@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Created By - Project Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e60493,#620681);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .member-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 280px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+        }
+
+        .member-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 20%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .role {
+            font-size: 16px;
+            color: #ffd700;
+            font-weight: 500;
+            margin: 6px 0;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #ddd;
+            line-height: 1.5;
+        }
+
+        .project-name {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 18px;
+            color: #ccc;
+            font-style: bold;
+        }
+
+        @media (max-width: 600px) {
+            .member-card {
+                width: 90%;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">Meet the Creators</div>
+
+    <div class="team">
+        
+        <!-- Member 1 -->
+        <div class="member-card" style="background: linear-gradient(145deg, rgba(255,192,203,0.15), rgba(255,105,180,0.15));">
+            <img src="/media/student_photos/Srush.jpeg" alt="Srushti Rasal">
+            <div class="member-name">Srushti Rasal</div>
+            <div class="role">Frontend Developer</div>
+            <div class="description">
+                Designed and developed the user interface. Ensured responsive design and smooth user experience using HTML, CSS, and JavaScript.
+            </div>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="member-card" style="background: linear-gradient(145deg, rgba(173,216,230,0.15), rgba(135,206,250,0.15));">
+            <img src="/media/student_photos/siddhi.jpeg" alt="Siddhi Ganbavale">
+            <div class="member-name">Siddhi Ganbavale</div>
+            <div class="role">Backend Developer</div>
+            <div class="description">
+                Built and managed the backend using Django. Handled database models, user authentication, and secure data operations.
+            </div>
+        </div>
+        <!-- Add more members below as needed -->
+    </div>
+    <div class="project-name"><b>Project :  Achievers Academy </b></div>
+</div>
+</body>
+</html>  

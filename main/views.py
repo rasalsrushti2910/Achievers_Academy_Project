@@ -617,7 +617,8 @@ def home(request):
         'academy_features': features
     })
 
-
+def created_by(request):
+    return render(request, 'main/created_by.html')
 
 
 

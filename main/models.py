@@ -28,7 +28,6 @@ class Course(models.Model):
     description = models.TextField(blank=True)
     course_photo = models.ImageField(upload_to='course_photos/', null=True, blank=True)
 
-
     def __str__(self):
         return self.name
 
@@ -53,7 +52,6 @@ class Syllabus(models.Model):
     def __str__(self):
         return f"Syllabus for {self.course.name}"
     
-
 #about us
 
 from django.db import models
@@ -65,8 +63,6 @@ class AboutUs(models.Model):
     def __str__(self):
         return "About Us Section"
 
-
-
 #Gallery model
 from django.db import models
 
@@ -77,11 +73,7 @@ class Gallery(models.Model):
     def __str__(self):
         return self.title
     
-
-
  #academy fetures
- 
-
 from django.db import models
 from django.db import models
 
@@ -93,33 +85,8 @@ class AcademyFeature(models.Model):
     def __str__(self):
         return self.title
     
-#add Student model
-
-# class Student(models.Model):
-#     admission = models.ForeignKey(Admission, on_delete=models.CASCADE)
-#     phone = models.CharField(max_length=15)
-#     email = models.EmailField()
-#     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.admission.name
-    
-# #student 
-# # models.py
-# from django.db import models
-# from main.models import Course, Admission
-
-# class Student(models.Model):
-#     admission = models.ForeignKey(Admission, on_delete=models.CASCADE)
-#     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
-#     phone = models.CharField(max_length=15, null=True)
-#     email = models.EmailField(unique=True, null=True)
-
-#     def __str__(self):
-#         return self.admission.name
 
 from django.db import models
-
 class Student(models.Model):
     admission = models.ForeignKey('Admission', on_delete=models.CASCADE)
     phone = models.CharField(max_length=15,null=True)

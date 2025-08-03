@@ -2,12 +2,10 @@ from django import forms
 from .models import Admission
 from .models import AdminUser
 
-
 class AdmissionForm(forms.ModelForm):
     class Meta:
         model = Admission
         fields = ['name', 'phone', 'email', 'course', 'city', 'pincode']
-
 
 
 class AdminLoginForm(forms.Form):
@@ -16,14 +14,8 @@ class AdminLoginForm(forms.Form):
 
 
 #add_course form
-
 from django import forms
 from .models import Course
-
-# class CourseForm(forms.ModelForm):
-#     class Meta:
-#         model = Course
-#         fields = ['name', 'description']  # change as per your model
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
@@ -32,7 +24,6 @@ class CourseForm(forms.ModelForm):
 
 #add_staff form
 from .models import Staff
-
 class StaffForm(forms.ModelForm):
     class Meta:
         model = Staff
@@ -45,7 +36,6 @@ class StaffForm(forms.ModelForm):
 #add_syllabus form
 from django import forms
 from .models import Syllabus
-
 class SyllabusForm(forms.ModelForm):
     class Meta:
         model = Syllabus
@@ -79,7 +69,6 @@ class AboutUsForm(forms.ModelForm):
 #gallery form
 from django import forms
 from .models import Gallery
-
 class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
@@ -92,11 +81,9 @@ class GalleryForm(forms.ModelForm):
 
 #academy fetures form
 # main/forms.py
-
 # forms.py (if using ModelForm)
 from django import forms
 from .models import AcademyFeature
-
 class AcademyFeatureForm(forms.ModelForm):
     class Meta:
         model = AcademyFeature
@@ -111,10 +98,8 @@ class AcademyFeatureForm(forms.ModelForm):
 # forms.py
 #add student
 # main/forms.py
-
 from django import forms
 from .models import Student
-
 class StudentEntryForm(forms.ModelForm):
     class Meta:
         model = Student
@@ -130,7 +115,6 @@ class StudentEntryForm(forms.ModelForm):
 
 # forms.py student
 from django import forms
-
 class StudentLoginForm(forms.Form):
     email = forms.EmailField(label="Enter Your Registered Email")
 

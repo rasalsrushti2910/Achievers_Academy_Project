@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e60493,#620681);
+            background: linear-gradient(135deg, #e4199a, #4d0366);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,7 +32,8 @@
             font-weight: 700;
             color: #fff;
             margin-bottom: 50px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in-out forwards;
         }
 
         .team {
@@ -42,25 +43,39 @@
             gap: 30px;
         }
 
-        .member-card {
+        .card {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px 20px;
-            width: 280px;
-            text-align: center;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 280px;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.8s ease forwards;
+            opacity: 0;
         }
 
-        .member-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .member-card img {
+        .card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+
+        .card img {
             width: 120px;
             height: 120px;
             object-fit: cover;
@@ -70,23 +85,22 @@
             margin-bottom: 15px;
         }
 
-        .member-name {
-            font-size: 20px;
+        .linkedin-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #000000;
             font-weight: 600;
-            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 10px;
         }
 
-        .role {
-            font-size: 16px;
-            color: #ffd700;
-            font-weight: 500;
-            margin: 6px 0;
-        }
-
-        .description {
-            font-size: 14px;
-            color: #ddd;
-            line-height: 1.5;
+        .linkedin-btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+            transform: scale(1.05);
         }
 
         .project-name {
@@ -94,11 +108,11 @@
             margin-top: 60px;
             font-size: 18px;
             color: #ccc;
-            font-style: bold;
+            animation: fadeIn 1.5s ease-in-out forwards;
         }
 
         @media (max-width: 600px) {
-            .member-card {
+            .card {
                 width: 90%;
             }
 
@@ -106,6 +120,50 @@
                 font-size: 32px;
             }
         }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: #ffffff;
+            color: #4d0366;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #4d0366;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
     </style>
 </head>
 <body>
@@ -114,29 +172,33 @@
     <div class="title">Meet the Creators</div>
 
     <div class="team">
-        
+
         <!-- Member 1 -->
-        <div class="member-card" style="background: linear-gradient(145deg, rgba(255,192,203,0.15), rgba(255,105,180,0.15));">
-            <img src="/media/student_photos/Srush.jpeg" alt="Srushti Rasal">
-            <div class="member-name">Srushti Rasal</div>
-            <div class="role">Frontend Developer</div>
-            <div class="description">
-                Designed and developed the user interface. Ensured responsive design and smooth user experience using HTML, CSS, and JavaScript.
-            </div>
+        <div class="card">
+            <img src="/media/student_photos/student1.jpeg" alt="Srushti Rasal">
+            <a class="linkedin-btn" href="https://www.linkedin.com/in/srushti-rasal-27424730a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">View LinkedIn</a>
         </div>
 
         <!-- Member 2 -->
-        <div class="member-card" style="background: linear-gradient(145deg, rgba(173,216,230,0.15), rgba(135,206,250,0.15));">
-            <img src="/media/student_photos/siddhi.jpeg" alt="Siddhi Ganbavale">
-            <div class="member-name">Siddhi Ganbavale</div>
-            <div class="role">Backend Developer</div>
-            <div class="description">
-                Built and managed the backend using Django. Handled database models, user authentication, and secure data operations.
-            </div>
+        <div class="card">
+            <img src="/media/student_photos/student2.jpeg" alt="Siddhi Ganbavale">
+            <a class="linkedin-btn" href="https://www.linkedin.com/in/siddhi-ganbavale-24b89b309?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">View LinkedIn</a>
         </div>
-        <!-- Add more members below as needed -->
+
+        <div class="card">
+            <img src="/media/student_photos/student1.jpeg" alt="Srushti Rasal">
+            <a class="linkedin-btn" href="https://www.linkedin.com" target="_blank">View LinkedIn</a>
+        </div>
+
     </div>
-    <div class="project-name"><b>Project :  Achievers Academy </b></div>
+
+    <div class="project-name"><b>Project: Achievers Academy</b></div>
+    <div class="back-home">
+    <a href="{% url 'home' %}" class="home-btn">← Back to Home</a>
+    <!-- <a href="{% url 'home' %}" class="btn btn-secondary px-4"><i class="fas fa-arrow-left"></i> Back</a> -->
+    </div>
+
 </div>
+
 </body>
-</html>  
+</html>

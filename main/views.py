@@ -3,10 +3,8 @@ from .models import Admission
 from django.contrib import messages
 
 #   AdmissionForm  view
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AdmissionForm  # You'll need to create this form
-
 def home(request):
     return render(request, 'main/home.html')
 
@@ -35,20 +33,6 @@ def admission_form(request):
     return render(request, "main/admission_form.html")
 
 
-# Explore courses
-def english_course(request):
-    return render(request, 'main/english_course.html')
-
-
-
-def japanese_course(request):
-    return render(request, 'main/japanese_course.html')
-
-def german_course(request):
-    return render(request, 'main/german_course.html')
-
-
-
 # receptionist_login & logout Dashboard,edit and delete View
 
 from django.contrib.auth import authenticate, login, logout
@@ -75,8 +59,13 @@ from .models import Admission
 from collections import defaultdict
 from django.utils import timezone
 from datetime import timedelta
+from django.contrib.auth import logout
 from .models import Admission  # Make sure you're using the correct model
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 
+@never_cache
+@login_required(login_url='receptionist_login')
 def receptionist_dashboard(request):
     grouped_admissions = defaultdict(list)
     all_admissions = Admission.objects.all().order_by('-submitted_at')  # Use correct date field
@@ -91,7 +80,6 @@ def receptionist_dashboard(request):
         'grouped_admissions': dict(grouped_admissions)
     })
 
-
 def receptionist_logout(request):
     logout(request)
     return redirect("receptionist_login")
@@ -105,7 +93,6 @@ def edit_admission(request, admission_id):
             return redirect('receptionist_dashboard')  # Update this to your dashboard view name
     else:
         form = AdmissionForm(instance=admission)
-    # return render(request, 'edit_admission.html', {'form': form})
     return render(request, 'main/edit_admission.html', {'form': form})
 
 
@@ -114,12 +101,10 @@ def delete_admission(request, admission_id):
     admission.delete()
     return redirect('receptionist_dashboard')  # Update this to your dashboard view name
 
-
 #Admin_login & logout Dashboard,edit and delete View
 
 from .forms import AdminLoginForm
 from .models import AdminUser
-
 def admin_login(request):
     error = ''
     if request.method == 'POST':
@@ -138,6 +123,7 @@ def admin_login(request):
 
     return render(request, 'main/admin_login.html', {'form': form, 'error': error})
 
+
 def admin_dashboard(request):
     if not request.session.get('admin_id'):
         return redirect('admin_login')
@@ -145,23 +131,9 @@ def admin_dashboard(request):
 
 
 from django.shortcuts import render, redirect
-from .models import Course
-from .forms import CourseForm
-
-# def add_course(request):
-#     if request.method == 'POST':
-#         form = CourseForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('view_course')
-#     else:
-#         form = CourseForm()
-#     return render(request, 'main/admin/add_course.html', {'form': form})
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import CourseForm
 from .models import Course
-
 def add_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
@@ -175,34 +147,10 @@ def add_course(request):
     return render(request, 'main/admin/add_course.html', {'form': form})
 
 
-
-# def view_course(request):
-#     courses = Course.objects.all()
-#     return render(request, 'main/admin/view_course.html', {'courses': courses})
-
-# def edit_course(request, course_id):
-#     course = get_object_or_404(Course, id=course_id)
-
-#     if request.method == 'POST':
-#         course.name = request.POST.get('name')
-#         course.description = request.POST.get('description')
-#         course.save()
-#         messages.success(request, 'Course updated successfully!')
-#         return redirect('view_course')  # Adjust to your actual URL name
-
-#     return render(request, 'main/admin/edit_course.html', {'course': course})
-
-# def delete_course(request, course_id):
-#     course = get_object_or_404(Course, id=course_id)
-#     course.delete()
-#     messages.success(request, "Course deleted successfully.")
-#     return redirect('view_course')  # Update with your actual URL name
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course
 from .forms import CourseForm
 from django.contrib import messages
-
 def view_course(request):
     courses = Course.objects.all()
     return render(request, 'main/admin/view_course.html', {'courses': courses})
@@ -219,20 +167,15 @@ def edit_course(request, course_id):
         form = CourseForm(instance=course)
     return render(request, 'main/admin/edit_course.html', {'form': form})
 
-
 def delete_course(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     course.delete()
     messages.success(request, 'Course deleted successfully!')
     return redirect('view_course')
 
-
-
-
 #for add_staff view
 from .forms import StaffForm
 from django.contrib import messages
-
 def add_staff(request):
     if request.method == 'POST':
         form = StaffForm(request.POST, request.FILES)
@@ -268,9 +211,7 @@ def delete_staff(request, staff_id):
     messages.success(request, 'Staff deleted successfully!')
     return redirect('view_staff')
 
-
 #for syllabus 
-
 from .forms import SyllabusForm
 from django.contrib import messages
 
@@ -289,7 +230,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Syllabus
 from .forms import SyllabusForm
-
 # View All Syllabus
 def view_syllabus(request):
     syllabus_list = Syllabus.objects.select_related('course')
@@ -315,15 +255,11 @@ def delete_syllabus(request, syllabus_id):
     messages.success(request, 'Syllabus deleted successfully!')
     return redirect('view_syllabus')
 
-
-
-
 #about us 
 # views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import AboutUs
 from .forms import AboutUsForm
-
 def add_or_edit_about_us(request, pk=None):
     if pk:
         about_us = get_object_or_404(AboutUs, pk=pk)
@@ -347,17 +283,13 @@ def add_or_edit_about_us(request, pk=None):
 
     return render(request, 'main/admin/add_about_us.html', context)
 
-#Salient fetures view
-
 #gallery view
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import GalleryForm
 from .models import Gallery
-
 from django.shortcuts import render, redirect, get_object_or_404
-
-# Add Gallery Image
+#Add Gallery Image
 def add_gallery(request):
     if request.method == 'POST':
         form = GalleryForm(request.POST, request.FILES)
@@ -368,8 +300,6 @@ def add_gallery(request):
     else:
         form = GalleryForm()
     return render(request, 'main/admin/add_gallery.html', {'form': form})
-
-
 
 
 def view_gallery(request):
@@ -396,11 +326,9 @@ def delete_gallery(request, pk):
 
 #acdemy features view
 
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import AcademyFeature
 from django.contrib import messages
-
 def add_academy_feature(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -422,7 +350,6 @@ def view_academy_features(request):
     features = AcademyFeature.objects.all()
     return render(request, 'main/admin/view_academy_features.html', {'features': features})
 
-
 def edit_academy_feature(request, pk):
     feature = get_object_or_404(AcademyFeature, pk=pk)
     if request.method == 'POST':
@@ -435,20 +362,17 @@ def edit_academy_feature(request, pk):
 
     return render(request, 'main/admin/edit_academy_feature.html', {'feature': feature})
 
-
 def delete_academy_feature(request, pk):
     feature = get_object_or_404(AcademyFeature, pk=pk)
     feature.delete()
     messages.success(request, "Academy Feature deleted successfully!")
     return redirect('view_academy_features')
 
-
 # views.py
 #add student
 from django.shortcuts import render, redirect
 from .forms import StudentEntryForm
 from .models import Admission
-
 def add_student(request):
     admissions = Admission.objects.all()
     if request.method == 'POST':
@@ -464,12 +388,10 @@ def add_student(request):
         'admissions': admissions
     })
 
-
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Student
 from .forms import StudentEntryForm
 from django.contrib import messages
-
 def view_student(request):
     students = Student.objects.all()
     return render(request, 'main/admin/view_student.html', {'students': students})
@@ -499,15 +421,12 @@ def delete_student(request, pk):
     messages.success(request, "Student deleted successfully!")
     return redirect('view_student')
 
-
 #student login view
-
 # views.py
 from django.shortcuts import render, redirect
 from .models import Student
 from .forms import StudentLoginForm
 from django.contrib import messages
-
 def student_login(request):
     if request.method == 'POST':
         form = StudentLoginForm(request.POST)
@@ -523,8 +442,10 @@ def student_login(request):
         form = StudentLoginForm()
     return render(request, 'main/student_login.html', {'form': form})
 
-
-
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+@never_cache
+@login_required(login_url='student_login')  # use your correct login URL name
 def student_dashboard(request):
     student_id = request.session.get('student_id')
     if not student_id:
@@ -533,20 +454,21 @@ def student_dashboard(request):
     student = Student.objects.get(id=student_id)
     return render(request, 'main/student_dashboard.html', {'student': student})
 
-
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+def student_logout(request):
+    logout(request)  # clears session
+    return redirect('student_login')  # redirect to login
 
 from django.shortcuts import render
 from main.models import Course  # Assuming model name is Course
-
 def student_view_courses(request):
     courses = Course.objects.all()
     return render(request, 'main/student/view_courses.html', {'courses': courses})
 
-
 # views.py
 from django.shortcuts import render
 from .models import Staff  # Assuming your model name is Staff
-
 def view_staff1(request):
     staff_members = Staff.objects.all()
     return render(request, 'main/student/view_staff1.html', {'staff_members': staff_members})
@@ -554,7 +476,6 @@ def view_staff1(request):
 # views.py
 from django.shortcuts import render
 from .models import Syllabus
-
 def view_syllabus1(request):
     syllabus_entries = Syllabus.objects.select_related('course').all()
     return render(request, 'main/student/view_syllabus1.html', {'syllabus_entries': syllabus_entries})
@@ -562,23 +483,17 @@ def view_syllabus1(request):
 # views.py
 from django.shortcuts import render
 from .models import AcademyFeature
-
 def view_academy_features1(request):
     features = AcademyFeature.objects.all()
     return render(request, 'main/student/view_academy_features1.html', {'features': features})
 
-
-
 from django.shortcuts import render
 from .models import Course
-
 def home(request):
     courses = Course.objects.all()
     return render(request, 'main/home.html', {'courses': courses})
 
-
 from main.models import AboutUs
-
 def home(request):
     courses = Course.objects.all()  # If used
     all_about= AboutUs.objects.all()
@@ -589,7 +504,6 @@ def home(request):
 
 from django.shortcuts import render
 from .models import AcademyFeature
-
 def home(request):
     courses = Course.objects.all()  # If used
     all_about= AboutUs.objects.all()
@@ -601,10 +515,8 @@ def home(request):
     })
 
 from .models import Gallery
-
 from django.shortcuts import render
 from .models import Gallery, Course, AboutUs, AcademyFeature  # adjust as per your app
-
 def home(request):
     gallery_images = Gallery.objects.all()
     courses = Course.objects.all()  # If used
